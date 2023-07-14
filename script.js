@@ -102,7 +102,7 @@ function initMap() {
         // draggable: true,
         icon: {
           url: window.selected,
-          scaledSize: new google.maps.Size(30, 30)
+          scaledSize: new google.maps.Size(70, 70)
           },
         label: '',
         scale: 2,
