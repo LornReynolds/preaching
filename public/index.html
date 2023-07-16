@@ -189,6 +189,8 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
     })
   })
 
+
+
       // Geocode the given latLng to get the address
     function geocodeLatLng(latLng, callback) {
       geocoder.geocode({ 'location': latLng }, function(results, status) {
@@ -285,10 +287,9 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
                         clk = 0
                       }
                     });
-            
+                    
                       // Add marker to the markers array
-                      // markers.push(marker);
-
+                      markers.push(marker);            
 
                   // Open the info window for the marker
               function openInfoWindow(marker, infoWindow) {
@@ -338,8 +339,6 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
         marker.setIcon();
       }  
 
-      // Add marker to the markers array
-      markers.push(marker);
 
         // Right-Click listener for removing markers
         document.addEventListener("contextmenu", (e) => {

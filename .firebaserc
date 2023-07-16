@@ -1,0 +1,11 @@
+{
+  "projects": {
+    "default": "preaching-map-mmz"
+  },
+  "targets": {},
+  "etags": {
+    "preaching-map-mmz": {
+      "extensionInstances": {}
+    }
+  }
+}
