@@ -151,8 +151,59 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
         tilt: 0,
       });
 
+      
       // Create geocoder
       geocoder = new google.maps.Geocoder();
+
+      // Add click listener for adding markers
+      map.addListener('click', function(event) {
+        placeMarker(event.latLng);
+      });      
+//    }
+
+  // Right-Click listener for removing markers
+      document.addEventListener("contextmenu", (e) => {
+        var marker = markers.pop();
+        marker.setMap(null);
+
+        // Remove associated info window
+        var infoWindow = infoWindows.pop();
+        infoWindow.close();
+      })
+
+    
+  // Add touch listener for removing markers
+  //           TOUCH EVENTS          //
+
+    document.addEventListener("touchstart", e => {
+      if (e.targetTouches.length >= 3) {
+        var marker = markers.pop();
+        marker.setMap(null);
+
+        // Remove associated info window
+        var infoWindow = infoWindows.pop();
+        infoWindow.close();
+      }
+      })
+
+    document.addEventListener("touchmove", e => {
+      ;[...e.changedTouches].forEach(touch => {
+        console.log('touchmove')
+      })
+    })
+
+    document.addEventListener("touchend", e => {
+      ;[...e.changedTouches].forEach(touch => {
+      })
+    })
+
+
+document.addEventListener("touchcancel", e => {
+  ;[...e.changedTouches].forEach(touch => {
+    var marker = markers.pop();
+    marker.setMap(null);
+  })
+})
 
 
       // Geocode the given latLng to get the address
@@ -251,6 +302,9 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
                         clk = 0
                       }
                     });
+
+                    // Add marker to the markers array
+                    markers.push(marker);
             
 
                   // Open the info window for the marker
