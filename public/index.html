@@ -155,7 +155,6 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
       // Create geocoder
       geocoder = new google.maps.Geocoder();
 
-<<<<<<< HEAD
       // Add click listener for adding markers
       map.addListener('click', function(event) {
         placeMarker(event.latLng);
@@ -205,43 +204,6 @@ document.addEventListener("touchcancel", e => {
     marker.setMap(null);
   })
 })
-=======
- // Add touch listener for removing markers
-  //           TOUCH EVENTS          //
-
-  document.addEventListener("touchstart", e => {
-    if (e.targetTouches.length >= 3) {
-      var marker = markers.pop();
-      marker.setMap(null);
-
-      // Remove associated info window
-      var infoWindow = infoWindows.pop();
-      infoWindow.close();
-    }
-    })
-
-  document.addEventListener("touchmove", e => {
-    ;[...e.changedTouches].forEach(touch => {
-      console.log('touchmove')
-    })
-  })
-
-  document.addEventListener("touchend", e => {
-    ;[...e.changedTouches].forEach(touch => {
-//        const dot = map.getElementById(touch.identifier);
-//        dot.remove()
-    })
-  })
-
-
-  document.addEventListener("touchcancel", e => {
-    ;[...e.changedTouches].forEach(touch => {
-      var marker = markers.pop();
-      marker.setMap(null);
-    })
-  })
-
->>>>>>> 40d81af87a519643be19b145a58fdcf6d1fc3c16
 
 
       // Geocode the given latLng to get the address
