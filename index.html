@@ -312,7 +312,9 @@ let map, infoWindow;
             
  
                     // Create info window
-                    var infoWindow = new google.maps.InfoWindow();
+                    var infoWindow = new google.maps.InfoWindow({
+                      maxWidth: 125,
+                    });
                     infoWindows.push(infoWindow);
 
                     // Add click listener for opening info window
@@ -375,7 +377,7 @@ let map, infoWindow;
             url: selected,
             scaledSize: new google.maps.Size(70, 70),
                 },
-          scale: 2,
+          scale: 1,
           tilt: 0,
         }); 
         url = selected;
