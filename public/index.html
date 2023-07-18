@@ -37,8 +37,8 @@
 </div>
 
 
-   <p>Tap once to drop Marker | Double-Tap to change color | Tap with 3 fingers to delete last marker dropped</p>
-   <p>Tap once on a marker to display address | Hold and drag markers to move location</p>
+   <p>Tap once to drop Marker</p>
+   <p>Tap once on a marker to display or hide address</p>
    
    <script>
     let radioBtns = document.querySelectorAll ("input[name='color']");
@@ -141,8 +141,8 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
     function initMap() {
       // Create map
       map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 32.9217747, lng: -117.0969422},
-        zoom: 13.31,
+        center: {lat: 32.9265058, lng: -117.0870638},
+        zoom: 13,
         disableDefaultUI: true,
         // disableDoubleClickZoom: true,
         gestureHandling: "greedy",
@@ -154,6 +154,40 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
       // Create geocoder
       geocoder = new google.maps.Geocoder();
 
+ // Add touch listener for removing markers
+  //           TOUCH EVENTS          //
+
+  document.addEventListener("touchstart", e => {
+    if (e.targetTouches.length >= 3) {
+      var marker = markers.pop();
+      marker.setMap(null);
+
+      // Remove associated info window
+      var infoWindow = infoWindows.pop();
+      infoWindow.close();
+    }
+    })
+
+  document.addEventListener("touchmove", e => {
+    ;[...e.changedTouches].forEach(touch => {
+      console.log('touchmove')
+    })
+  })
+
+  document.addEventListener("touchend", e => {
+    ;[...e.changedTouches].forEach(touch => {
+//        const dot = map.getElementById(touch.identifier);
+//        dot.remove()
+    })
+  })
+
+
+  document.addEventListener("touchcancel", e => {
+    ;[...e.changedTouches].forEach(touch => {
+      var marker = markers.pop();
+      marker.setMap(null);
+    })
+  })
 
       // Geocode the given latLng to get the address
     function geocodeLatLng(latLng, callback) {
@@ -175,7 +209,7 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
           data.lat = e.latLng.lat();
           data.lng = e.latLng.lng();
           data.icon = window.selected;
-          placeMarker(e.latLng);
+        //  placeMarker(e.latLng);
           addToFirebase(data);
           console.log('data: ', data);
           url = window.selected;
@@ -185,11 +219,7 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
         var heatmap = new google.maps.visualization.HeatmapLayer({
           data: [],
           map: map,
-//          icon: {
-//            url: selected,
-//            scaledSize: new google.maps.Size(30, 30),
-//                },
-          radius: 10,
+          radius: 5,
         });
 
         initAuthentication(initFirebase.bind(undefined, heatmap));
@@ -226,8 +256,11 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
             var marker = new google.maps.Marker({
               position: point,
               map: map,
-              icon: snapshot.val(),
-              // draggable: true,
+              icon: {
+                url: url.icon,
+                scaledSize: new google.maps.Size(70, 70),
+                draggable: true,
+                    },
               label: '',
               scale: 2
             });
@@ -253,6 +286,9 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
                       }
                     });
             
+                      // Add marker to the markers array
+                      // markers.push(marker);
+
 
                   // Open the info window for the marker
               function openInfoWindow(marker, infoWindow) {
@@ -292,7 +328,7 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
           draggable: false,
           icon: {
             url: selected,
-            scaledSize: new google.maps.Size(30, 30),
+            scaledSize: new google.maps.Size(70, 70),
                 },
           scale: 2,
           tilt: 0,
@@ -302,6 +338,8 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
         marker.setIcon();
       }  
 
+      // Add marker to the markers array
+      markers.push(marker);
 
         // Right-Click listener for removing markers
         document.addEventListener("contextmenu", (e) => {

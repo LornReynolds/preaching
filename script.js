@@ -145,7 +145,6 @@ function initMap() {
       });
     }
 
-
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       infoWindow.setPosition(pos);
       infoWindow.setContent(
@@ -155,3 +154,15 @@ function initMap() {
       );
       infoWindow.open(map);
     }
+=======
+    // Remove the last placed marker
+  function removeMarker() {
+    if (markers.length === 2) {
+      var marker = markers.pop();
+      marker.setMap(null);
+
+      // Remove associated info window
+      var infoWindow = infoWindows.pop();
+      infoWindow.close();
+    }
+  }

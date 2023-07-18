@@ -234,7 +234,9 @@ let map, infoWindow;
     infoWindow.open(map);
   }
 
-      // Geocode the given latLng to get the address
+=======
+
+  // Geocode the given latLng to get the address
     function geocodeLatLng(latLng, callback) {
       geocoder.geocode({ 'location': latLng }, function(results, status) {
         if (status === 'OK') {
@@ -331,6 +333,9 @@ let map, infoWindow;
                       }
                     });
             
+                      // Add marker to the markers array
+                      // markers.push(marker);
+
 
                   // Open the info window for the marker
               function openInfoWindow(marker, infoWindow) {
@@ -380,6 +385,8 @@ let map, infoWindow;
         marker.setIcon();
       }  
 
+      // Add marker to the markers array
+      markers.push(marker);
 
         // Right-Click listener for removing markers
         document.addEventListener("contextmenu", (e) => {
