@@ -154,7 +154,7 @@ function initMap() {
       );
       infoWindow.open(map);
     }
-=======
+
     // Remove the last placed marker
   function removeMarker() {
     if (markers.length === 2) {
