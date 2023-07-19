@@ -47,7 +47,7 @@
       let findSelected = () => {
         var selected = document.querySelector("input[name='color']:checked").value;
         result.textContent = `${selected}`;
-        console.log('selected: ', result.textContent);
+        // console.log('selected: ', result.textContent);
         window.selected = result.textContent;
         }
   
@@ -256,7 +256,7 @@ let map, infoWindow;
           data.icon = window.selected;
         //  placeMarker(e.latLng);
           addToFirebase(data);
-          console.log('data: ', data);
+          // console.log('data: ', data);
           url = window.selected;
         });
 
@@ -292,7 +292,7 @@ let map, infoWindow;
             var elapsedMs = Date.now() - newPosition.timestamp;
             var icon = snapshot.val();
             var url = snapshot.val();
-            console.log('var url: ', url)
+            // console.log('var url: ', url)
 
             // Add the point to the heatmap.
             heatmap.getData().push(point);
@@ -379,13 +379,13 @@ let map, infoWindow;
           tilt: 0,
         }); 
         url = selected;
-        console.log('url: ', url);
+        // console.log('url: ', url);
         marker.setIcon();
-      }  
+      // }  
 
       // Add marker to the markers array
       markers.push(marker);
-
+    }
         // Right-Click listener for removing markers
         document.addEventListener("contextmenu", (e) => {
         var marker = markers.pop();
