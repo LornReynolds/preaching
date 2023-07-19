@@ -47,7 +47,7 @@
       let findSelected = () => {
         var selected = document.querySelector("input[name='color']:checked").value;
         result.textContent = `${selected}`;
-        console.log('selected: ', result.textContent);
+        // console.log('selected: ', result.textContent);
         window.selected = result.textContent;
         }
   
@@ -65,7 +65,7 @@
     /* Global Variables */
     var selected;
     var choice;
-    var map;
+    //var map;
     var firebase;
     var markers = [];
     var markerUrl;
@@ -137,6 +137,8 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
       });
 */
 
+let map, infoWindow;
+
     // Initialize Google Map
     function initMap() {
       // Create map
@@ -151,6 +153,39 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
         tilt: 0,
       });
 
+      infoWindow = new google.maps.InfoWindow();
+
+      const locationButton = document.createElement("button");
+
+      locationButton.textContent = "Pan to Current Location";
+      locationButton.classList.add("custom-map-control-button");
+      map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+      locationButton.addEventListener("click", () => {
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+    
+              infoWindow.setPosition(pos);
+              infoWindow.setContent("Location found.");
+            //  infoWindow.open(map);
+              map.setCenter(pos);
+              map.setZoom(23)
+            },
+            () => {
+              handleLocationError(true, infoWindow, map.getCenter());
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      });
+    
       // Create geocoder
       geocoder = new google.maps.Geocoder();
 
@@ -189,7 +224,17 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
     })
   })
 
-      // Geocode the given latLng to get the address
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(
+      browserHasGeolocation
+        ? "Error: The Geolocation service failed."
+        : "Error: Your browser doesn't support geolocation."
+    );
+    infoWindow.open(map);
+  }
+
+  // Geocode the given latLng to get the address
     function geocodeLatLng(latLng, callback) {
       geocoder.geocode({ 'location': latLng }, function(results, status) {
         if (status === 'OK') {
@@ -211,7 +256,7 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
           data.icon = window.selected;
         //  placeMarker(e.latLng);
           addToFirebase(data);
-          console.log('data: ', data);
+          // console.log('data: ', data);
           url = window.selected;
         });
 
@@ -247,7 +292,7 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
             var elapsedMs = Date.now() - newPosition.timestamp;
             var icon = snapshot.val();
             var url = snapshot.val();
-            console.log('var url: ', url)
+            // console.log('var url: ', url)
 
             // Add the point to the heatmap.
             heatmap.getData().push(point);
@@ -262,7 +307,7 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
                 draggable: true,
                     },
               label: '',
-              scale: 2
+              scale: 1
             });
             
  
@@ -334,13 +379,13 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
           tilt: 0,
         }); 
         url = selected;
-        console.log('url: ', url);
+        // console.log('url: ', url);
         marker.setIcon();
-      }  
+      // }  
 
       // Add marker to the markers array
       markers.push(marker);
-
+    }
         // Right-Click listener for removing markers
         document.addEventListener("contextmenu", (e) => {
         var marker = markers.pop();
