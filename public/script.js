@@ -1,29 +1,11 @@
-// import apiKey from config.js
+// import API_KEY from config.js
 
-var apiKey = API_KEY;
+// var apiKey = API_KEY;
 var database;
 var firebase;
 var ref;
 
 
-var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, marker: null};
-
-// console.log("this is working from inside script.js", apiKey)
-
-      function initAuthentication(onAuthSuccess) {
-        firebase.auth().signInAnonymously().catch(function(error) {
-          console.log(error.code + ', ' + error.message);
-        }, {remember: 'sessionOnly'});
-
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            data.sender = user.uid;
-            onAuthSuccess();
-          } else {
-            // User is signed out.
-          }
-        });
-      }
 
 
 
@@ -94,76 +76,76 @@ function initMap() {
 // });
 // }
 
-    // Place a marker on the map
-    function addMarker(point) {
-      // Create marker
-      var marker = new google.maps.Marker({
-        position: point,
-        map: map,
-        // draggable: true,
-        icon: {
-          url: window.selected,
-          scaledSize: new google.maps.Size(70, 70)
-          },
-        label: '',
-        scale: 2,
-        tilt: 0,
+// Place a marker on the map
+function addMarker(point) {
+  // Create marker
+  var marker = new google.maps.Marker({
+    position: point,
+    map: map,
+    // draggable: true,
+    icon: {
+      url: window.selected,
+      scaledSize: new google.maps.Size(70, 70)
+      },
+    label: '',
+    scale: 2,
+    tilt: 0,
+  });
+  addToFirebase(data);
+}  
+
+
+function getTimestamp(addClick) {
+//   // Reference to location for saving the last click time.
+  var ref = firebase.database().ref('last_message/' + data.sender);
+
+    ref.onDisconnect().remove();  // Delete reference from firebase on disconnect.
+
+//   // Set value to timestamp.
+  ref.set(firebase.database.ServerValue.TIMESTAMP, function(err) {
+    if (err) {  // Write to last message was unsuccessful.
+      console.log(err);
+    } else {  // Write to last message was successful.
+      ref.once('value', function(snap) {
+        addClick(snap.val());  // Add click with same timestamp.
+      }, function(err) {
+        console.warn(err);
       });
-      addToFirebase(data);
-    }  
+    }
+  });
+}
 
-
-    function getTimestamp(addClick) {
-      //   // Reference to location for saving the last click time.
-        var ref = firebase.database().ref('last_message/' + data.sender);
-
-         ref.onDisconnect().remove();  // Delete reference from firebase on disconnect.
-
-      //   // Set value to timestamp.
-        ref.set(firebase.database.ServerValue.TIMESTAMP, function(err) {
-          if (err) {  // Write to last message was unsuccessful.
-            console.log(err);
-          } else {  // Write to last message was successful.
-            ref.once('value', function(snap) {
-              addClick(snap.val());  // Add click with same timestamp.
-            }, function(err) {
-              console.warn(err);
-            });
-          }
-        });
+function addToFirebase(data) {
+  getTimestamp(function(timestamp) {
+    // Add the new timestamp to the record data.
+    data.timestamp = timestamp;
+    data.url = selected;
+    var ref = firebase.database().ref('clicks').push(data, function(err) {
+      if (err) {  // Data was not written to firebase.
+        console.warn(err);
       }
+    });
+  });
+}
 
-    function addToFirebase(data) {
-      getTimestamp(function(timestamp) {
-        // Add the new timestamp to the record data.
-        data.timestamp = timestamp;
-        data.url = selected;
-        var ref = firebase.database().ref('clicks').push(data, function(err) {
-          if (err) {  // Data was not written to firebase.
-            console.warn(err);
-          }
-        });
-      });
-    }
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+  infoWindow.open(map);
+}
 
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-      infoWindow.setPosition(pos);
-      infoWindow.setContent(
-        browserHasGeolocation
-          ? "Error: The Geolocation service failed."
-          : "Error: Your browser doesn't support geolocation."
-      );
-      infoWindow.open(map);
-    }
+// Remove the last placed marker
+function removeMarker() {
+  if (markers.length === 2) {
+    var marker = markers.pop();
+    marker.setMap(null);
 
-    // Remove the last placed marker
-  function removeMarker() {
-    if (markers.length === 2) {
-      var marker = markers.pop();
-      marker.setMap(null);
-
-      // Remove associated info window
-      var infoWindow = infoWindows.pop();
-      infoWindow.close();
-    }
+    // Remove associated info window
+    var infoWindow = infoWindows.pop();
+    infoWindow.close();
   }
+}
