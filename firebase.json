@@ -19,6 +19,7 @@
     }
   ],
   "hosting": {
+    "site": "mmz-preaching",
     "public": "public",
     "ignore": [
       "firebase.json",
@@ -64,3 +65,4 @@
   },
   "extensions": {}
 }
+

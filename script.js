@@ -8,6 +8,7 @@ var ref;
 
 var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, marker: null};
 
+// console.log("this is working from inside script.js", apiKey)
 
       function initAuthentication(onAuthSuccess) {
         firebase.auth().signInAnonymously().catch(function(error) {
