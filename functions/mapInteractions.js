@@ -29,12 +29,15 @@ function loadMapScript() {
 loadMapScript()
 
 // Initialize Google Map
-function initMap() {
-  // Create map
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");  
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 32.9265058, lng: -117.0870638},
     zoom: 13,
     disableDefaultUI: true,
+    draggable: true,
     // disableDoubleClickZoom: true,
     gestureHandling: "greedy",
     zoomControl: false,
@@ -47,6 +50,7 @@ function initMap() {
   const locationButton = document.createElement("button");
 
   locationButton.textContent = "Pan to Current Location";
+  locationButton.style.fontSize = "45px";
   locationButton.classList.add("custom-map-control-button");
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   locationButton.addEventListener("click", () => {
@@ -60,7 +64,7 @@ function initMap() {
           };
 
           infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
+          infoWindow.setContent("Location found");
         //  infoWindow.open(map);
           map.setCenter(pos);
           map.setZoom(23)
@@ -163,10 +167,11 @@ document.addEventListener("touchcancel", e => {
 // Place a marker on the map
 function placeMarker(point) {
     // Create marker
+
     var marker = new google.maps.Marker({
         position: point,
         map: map,
-        draggable: false,
+        draggable: drag,
         icon: {
         url: selected,
         scaledSize: new google.maps.Size(70, 70),
@@ -196,3 +201,15 @@ document.addEventListener("contextmenu", (e) => {
     var infoWindow = infoWindows.pop();
     infoWindow.close();
 })
+
+
+//////////////////  New Map Functions
+
+// map.addListener("zoom_changed", () => {
+//   const zoom = map.getZoom();
+
+//   if (zoom) {
+//     // Only show each marker above a certain zoom level
+//     marker.map = zoom > 15 ? map : null;
+//   }
+// })

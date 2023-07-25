@@ -1,6 +1,6 @@
 // import API_KEY from config.js
 
-// var apiKey = API_KEY;
+var apiKey = API_KEY;
 var database;
 var firebase;
 var ref;
@@ -24,8 +24,10 @@ var ref;
 ////////////////////////////////////////////////////////////////
 
 // Function to initialize the map
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");  map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 32.9217747, lng: -117.0969422},
     zoom: 13.31,
     disableDefaultUI: true,
