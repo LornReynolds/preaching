@@ -1,11 +1,18 @@
 {
   "projects": {
-    "default": "preaching-map-mmz"
+    "default": "gopreach"
   },
-  "targets": {},
-  "etags": {
-    "preaching-map-mmz": {
-      "extensionInstances": {}
+  "targets": {
+    "gopreach": {
+      "hosting": {
+        "mmz-preaching-test": [
+          "public"
+        ],
+        "test": [
+          "mmz-preaching-test"
+        ]
+      }
     }
-  }
+  },
+  "etags": {}
 }

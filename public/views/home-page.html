@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+    h1{text-align: center;}
+    h2{text-align: center;}
+    h3{text-align: center;}
+    h4{text-align: center;}
+    p{text-align: center;}
+
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1 align:center>Go Preach!</h1>
+    <h2>
+      Red=No Answer / Green=Preached / Blue=Contact
+   </h2>
+
+   <div class="container" align="center">
+    <input type="radio" name="color" id="red" value="https://maps.google.com/mapfiles/ms/icons/red-dot.png" checked/>Red</br>
+    <input type="radio" name="color" id="green" value="https://maps.google.com/mapfiles/ms/icons/green-dot.png"/>Green</br>
+    <input type="radio" name="color" id="blue" value="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"/>Blue</br>
+    <p id="result">:</p>
+</div>
+
+
+   <p>Tap once to drop Marker</p>
+   <p>Tap once on a marker to display or hide address</p>
+   
+  <script>
+    // /* Global Variables */
+    var infoWindows = [];
+    var markers = [];
+    var apiKey = "AIzaSyDmntNR4FrYo0CeTKdFl7Y83BGgi5-EZcc"
+  </script>
+
+    <div id="map"></div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script>
+   
+
+    </script>
+
+  <script src="../js/firebase.js"></script>
+  <script src="../js/map-interactions.js"></script>
+  <script>   // Load the Google Maps API and initiate the map
+    // loadMapScript();  </script>
+  </body>
+</html>
