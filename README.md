@@ -4,8 +4,6 @@
 
 - [Description](#description)
 - [Usage](#usage)
-- [prod website](mmz-preaching.firebaseapp.com)
-- [test website](mmz-preaching-test.firebaseapp.com)
 - [Contact](#contact-info)
 - [License](#license)
 
@@ -19,6 +17,9 @@ Mira Mesa Zion Preaching Application to keep in step with the gospel of being un
 2. Create an account
 3. Go preach!
 4. Mark locations!
+
+Production: https://mmz-preaching.firebaseapp.com
+Test: https://mmz-preaching-test.firebaseapp.com/
 
 ## Contact Info
 
