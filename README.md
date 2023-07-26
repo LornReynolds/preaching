@@ -13,8 +13,8 @@ Mira Mesa Zion Preaching Application to keep in step with the gospel of being un
 
 ## Usage
 
-1. Go to [mmz-preaching.firebaseapp.com](mmz-preaching.firebaseapp.com)
-2. Create an account
+1. Go to website.
+2. Create an account.
 3. Go preach!
 4. Mark locations!
 
