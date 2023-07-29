@@ -185,14 +185,17 @@ function placeMarker(point) {
 
 
 // Right-Click listener for removing markers
-// Currently temporary and markers appears uupon refresh
-document.addEventListener("contextmenu", (e) => {
-    var marker = markers.pop();
-    console.log("marker: ", marker)
-    if (marker) {
-        marker.setMap(null);
-    }
-    // Remove associated info window
-    var infoWindow = infoWindows.pop();
-    infoWindow.close();
-})
+// Currently temporary and markers appears upon refresh
+// Removes last marker, not marker at location
+// document.addEventListener("contextmenu", (e) => {
+//   console.log("e: ", e);
+//   console.log("markers: ", markers);
+  // var marker = markers.pop();
+  // console.log("marker: ", marker)
+  // if (marker) {
+  //     marker.setMap(null);
+  // }
+  // // Remove associated info window
+  // var infoWindow = infoWindows.pop();
+  // infoWindow.close();
+// })

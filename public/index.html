@@ -1,68 +1,65 @@
-<!DOCTYPE html>
-<html>
-  <!-- <script src="config.js"></script> -->
+<!doctype html>
+<html lang="en">
   <head>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
+  	<title>Login 08</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    h1{text-align: center;}
-    h2{text-align: center;}
-    h3{text-align: center;}
-    h4{text-align: center;}
-    p{text-align: center;}
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/style.css">
 
-    <h1 align:center>Go Preach!</h1>
-    <h2>
-      Red=No Answer / Green=Preached / Blue=Contact
-   </h2>
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container-animate" id="fly-in-login">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Mira Mesa Zion Preaching App</h2>
+					<h3 class="heading-section">God bless you!</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-5">
+					<div class="login-wrap p-4 p-md-5">
+		      	<div class="icon d-flex align-items-center justify-content-center">
+		      		<span class="fa fa-user-o"></span>
+		      	</div>
+		      	<h3 class="text-center mb-4">Login to your account!</h3>
+						<form action="#" class="login-form">
+		      		<div class="form-group">
+		      			<input type="text" class="form-control rounded-left" placeholder="Username" required>
+		      		</div>
+	            <div class="form-group d-flex">
+	              <input type="password" class="form-control rounded-left" placeholder="Password" required>
+	            </div>
+	            <div class="form-group d-md-flex">
+	            	<div class="w-50">
+	            		<label class="checkbox-wrap checkbox-primary">Remember Me
+									  <input type="checkbox" checked>
+									  <span class="checkmark"></span>
+									</label>
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="#">Forgot Password</a>
+								</div>
+	            </div>
+	            <div class="form-group">
+	            	<button type="submit" id="login-button" onclick="window.location='views/home-page.html';" class="btn btn-primary rounded submit p-3 px-5">Get Started</button>
+	            </div>
+	          </form>
+	        </div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-   <div class="container" align="center">
-    <input type="radio" name="color" id="red" value="https://maps.google.com/mapfiles/ms/icons/red-dot.png" checked/>Red</br>
-    <input type="radio" name="color" id="green" value="https://maps.google.com/mapfiles/ms/icons/green-dot.png"/>Green</br>
-    <input type="radio" name="color" id="blue" value="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"/>Blue</br>
-    <p id="result">:</p>
-</div>
+	<!-- <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script> -->
 
-
-   <p>Tap once to drop Marker</p>
-   <p>Tap once on a marker to display or hide address</p>
-   
-  <script>
-    // /* Global Variables */
-    var infoWindows = [];
-    var markers = [];
-    var apiKey = "AIzaSyDmntNR4FrYo0CeTKdFl7Y83BGgi5-EZcc"
-  </script>
-
-    <div id="map"></div>
-
-    <script src="config.js"></script>
-    <script src="script.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
-    <script>
-   
-
-    </script>
-
-  <script src="../functions/firebase.js"></script>
-  <script src="../functions/mapInteractions.js"></script>
-  <script>   // Load the Google Maps API and initiate the map
-    // loadMapScript();  </script>
-  </body>
+	</body>
 </html>
+

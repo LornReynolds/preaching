@@ -1,14 +1,14 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: apiKey,
-    authDomain: "gopreach-a7264.firebaseapp.com",
-    databaseURL: "https://gopreach-default-rtdb.firebaseio.com",
-    projectId: "gopreach",
-    storageBucket: "gopreach.appspot.com",
-    messagingSenderId: "580349965059",
-    appId: "1:580349965059:web:fa37a39239e5add4f02f36",
-    measurementId: "G-7EGHMNXZ2L"
-  };
+  apiKey: apiKey,
+  authDomain: "gopreach-a7264.firebaseapp.com",
+  databaseURL: "https://gopreach-default-rtdb.firebaseio.com",
+  projectId: "gopreach",
+  storageBucket: "gopreach.appspot.com",
+  messagingSenderId: "580349965059",
+  appId: "1:580349965059:web:fa37a39239e5add4f02f36",
+  measurementId: "G-7EGHMNXZ2L"
+};
   
 firebase.initializeApp(firebaseConfig);
 
@@ -77,9 +77,22 @@ function initFirebase(heatmap) {
                   clk = 0
                 }
               });
+
+              // Add right click listener to remove icon
+              marker.addListener("contextmenu", (e) => {
+                // Note this doesn't remove anything from firebase database, yet.
+                let marker_index = markers.length                
+                markers.splice(marker_index, 1)
+                if (marker) {
+                    marker.setMap(null);
+                }
+                // Remove associated info window
+                var infoWindow = infoWindows.pop();
+                infoWindow.close();
+              })
       
-                // Add marker to the markers array
-                markers.push(marker);
+              // Add marker to the markers array
+              markers.push(marker);
 
 
             // Open the info window for the marker
