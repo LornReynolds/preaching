@@ -1,6 +1,9 @@
+// import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js';
+// import { getDatabase } from 'https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js';
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: apiKey,
+  apiKey: "AIzaSyDmntNR4FrYo0CeTKdFl7Y83BGgi5-EZcc",
   authDomain: "gopreach-a7264.firebaseapp.com",
   databaseURL: "https://gopreach-default-rtdb.firebaseio.com",
   projectId: "gopreach",
@@ -10,10 +13,11 @@ const firebaseConfig = {
   measurementId: "G-7EGHMNXZ2L"
 };
   
-firebase.initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 // Get a reference to the Firebase Realtime Database
-var database = firebase.database();
+// var firebaseDb = getDatabase(firebaseApp);
+var firebaseDb = firebase.database()
 
 var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, marker: null};
 
@@ -22,12 +26,12 @@ var data = {sender: null, timestamp: null, lat: null, lng: null, url: null, mark
  * @param {!google.maps.visualization.HeatmapLayer} heatmap The heatmap to
  */
 function initFirebase(heatmap) {
-
   // current time.
   var startTime = new Date().getTime();
 
   // Reference to the clicks in Firebase.
-  var clicks = firebase.database().ref('clicks');
+  // var clicks = firebase.database().ref('clicks');
+  var clicks = firebaseDb.ref('clicks');
 
   // Listen for clicks and add them to the heatmap.
   clicks.orderByChild('timestamp').on('child_added',
@@ -158,7 +162,7 @@ function addToFirebase(data) {
     data.icon = window.selected;
     data.url = window.selected;
 //          data.marker = window.selected;
-    var ref = firebase.database().ref('clicks').push(data, function(err) {
+    var ref = firebaseDb.ref('clicks').push(data, function(err) {
       if (err) {  // Data was not written to firebase.
         console.warn(err);
       }
@@ -175,12 +179,12 @@ function addToFirebase(data) {
  */
 function getTimestamp(addClick) {
   //   // Reference to location for saving the last click time.
-    var ref = firebase.database().ref('last_message/' + data.sender);
+    var ref = firebaseDb().ref('last_message/' + data.sender);
   
   //   ref.onDisconnect().remove();  // Delete reference from firebase on disconnect.
   
   //   // Set value to timestamp.
-    ref.set(firebase.database.ServerValue.TIMESTAMP, function(err) {
+    ref.set(firebaseDb.ServerValue.TIMESTAMP, function(err) {
       if (err) {  // Write to last message was unsuccessful.
         console.log(err);
       } else {  // Write to last message was successful.

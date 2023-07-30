@@ -1,4 +1,6 @@
 
+// import { initAuthentication } from "./firebase-operations";
+
 // Radio buttons for selecting map icon color
 let radioBtns = document.querySelectorAll ("input[name='color']");
 let result = document.getElementById("result");
@@ -19,11 +21,11 @@ findSelected();
 
 // Add a reference to the Google Maps API script with the callback to initMap method
 function loadMapScript() {
-    var script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=visualization&callback=initMap`
-    script.defer = true;
-    script.async = true;
-    document.body.appendChild(script);
+  var script = document.createElement('script');
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=visualization&callback=initMap`
+  script.defer = true;
+  script.async = true;
+  document.body.appendChild(script);
 }
 
 loadMapScript()
