@@ -24,28 +24,28 @@ var ref;
 ////////////////////////////////////////////////////////////////
 
 // Function to initialize the map
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 32.9217747, lng: -117.0969422},
-    zoom: 13.31,
-    disableDefaultUI: true,
-    // disableDoubleClickZoom: true,
-    gestureHandling: "greedy",
-    zoomControl: false,
-    mapTypeId: 'hybrid',
-    tilt: 0,
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById('map'), {
+//     center: {lat: 32.9217747, lng: -117.0969422},
+//     zoom: 13.31,
+//     disableDefaultUI: true,
+//     // disableDoubleClickZoom: true,
+//     gestureHandling: "greedy",
+//     zoomControl: false,
+//     mapTypeId: 'hybrid',
+//     tilt: 0,
 //    icon: {
 //      url: url,
 //      scaledSize: new google.maps.Size(30, 30)
 //          }
-  });
+  // });
   
   // Add click event listener to the map
-  map.addListener('click', (event) => {
-      addMarker(event.latLng);
-      console.log('click')
-  });
-}
+  // map.addListener('click', (event) => {
+  //     addMarker(event.latLng);
+  //     console.log('click')
+  // });
+// }
 
 
 ////////////////////////////////////////////////////////////////

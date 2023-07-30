@@ -34,6 +34,9 @@
     <input type="radio" name="color" id="green" value="https://maps.google.com/mapfiles/ms/icons/green-dot.png"/>Green</br>
     <input type="radio" name="color" id="blue" value="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"/>Blue</br>
     <p id="result">:</p>
+    <div class="form-group">
+      <button type="submit" id="logout-button" class="btn btn-primary rounded submit p-3 px-5">Log Out</button>
+    </div>
 </div>
 
 
@@ -51,6 +54,7 @@
 
     <script src="../js/config.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/auth/logout.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
@@ -59,9 +63,14 @@
 
     </script>
 
-  <script src="../js/firebase.js"></script>
+  <script src="../js/firebase-operations.js"></script>
   <script src="../js/map-interactions.js"></script>
   <script>   // Load the Google Maps API and initiate the map
-    // loadMapScript();  </script>
+    
+
+    // loadMapScript();  
+    </script>
+
+  
   </body>
 </html>
