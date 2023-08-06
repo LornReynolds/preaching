@@ -1,5 +1,7 @@
 // import API_KEY from config.js
 
+// {/* <script src="../config.js"></script> */}
+
 // var apiKey = API_KEY;
 var database;
 var firebase;
