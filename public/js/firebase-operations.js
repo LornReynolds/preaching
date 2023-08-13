@@ -3,7 +3,7 @@
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDmntNR4FrYo0CeTKdFl7Y83BGgi5-EZcc",
+  apiKey: apiKey,
   authDomain: "gopreach-a7264.firebaseapp.com",
   databaseURL: "https://gopreach-default-rtdb.firebaseio.com",
   projectId: "gopreach",

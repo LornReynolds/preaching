@@ -49,6 +49,7 @@ function initMap() {
   const locationButton = document.createElement("button");
 
   locationButton.textContent = "Pan to Current Location";
+  locationButton.style.fontSize = "45px"
   locationButton.classList.add("custom-map-control-button");
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   locationButton.addEventListener("click", () => {
@@ -171,7 +172,7 @@ function placeMarker(point) {
         draggable: false,
         icon: {
         url: selected,
-        scaledSize: new google.maps.Size(70, 70),
+        scaledSize: new google.maps.Size(40, 40),
                 },
         scale: 2,
         tilt: 0,
