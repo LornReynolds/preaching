@@ -172,7 +172,7 @@ function placeMarker(point) {
         draggable: false,
         icon: {
         url: selected,
-        scaledSize: new google.maps.Size(40, 40),
+        scaledSize: new google.maps.Size(25, 25),
                 },
         scale: 2,
         tilt: 0,
